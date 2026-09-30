@@ -50,3 +50,11 @@ next-env.d.ts
 /_ref/
 /.playwright-mcp/
 .dev.log
+/_gen/out-*/
+/_gen/gseq/
+/_gen/mseq/
+/_gen/nseq/
+/_gen/pseq/
+/_gen/qseq/
+/_gen/*.glb
+/_gen/*.tsx.txt

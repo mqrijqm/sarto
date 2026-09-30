@@ -16,8 +16,8 @@ const DepthSculpture = dynamic(() => import("../webgl/DepthSculpture").then((x) 
 
 const STYLES = [
   { id: "tux", label: { bs: "Smoking", en: "Tuxedo" }, img: "sculpt-tux", depth: "depth-tux", price: 2400 },
-  { id: "single", label: { bs: "Jednoredno", en: "Single-breasted" }, img: "sculpt-single", depth: "depth-single", price: 2400 },
-  { id: "double", label: { bs: "Dvoredno", en: "Double-breasted" }, img: "sculpt-double", depth: "depth-double", price: 2650 },
+  { id: "single", label: { bs: "Jednoredno", en: "Single-breasted" }, img: "sculpt-single", depth: null, price: 2400 },
+  { id: "double", label: { bs: "Dvoredno", en: "Double-breasted" }, img: "sculpt-double", depth: null, price: 2650 },
 ];
 
 const LIFESTYLE = [
@@ -89,7 +89,7 @@ export function ProductView() {
       <div>
         {/* viewer */}
         <section ref={viewer} className="relative h-[100svh] min-h-[640px] cursor-grab touch-pan-y bg-[#f1eeea] active:cursor-grabbing">
-          <DepthSculpture key={cur.id} src={m(cur.img)} depth={m(cur.depth)} state={state} bg="#f1eeea" className="absolute inset-0" />
+          <DepthSculpture key={cur.id} src={m(cur.img)} depth={cur.depth ? m(cur.depth) : undefined} state={state} bg="#f1eeea" className="absolute inset-0" />
           <p className="t-label pointer-events-none absolute bottom-[140px] left-1/2 -translate-x-1/2 text-mute max-lg:bottom-[120px]">{t({ bs: "Prevucite da okrenete", en: "Drag to rotate" })}</p>
           <div className="absolute bottom-[20px] left-[20px] max-w-[410px] bg-paper px-[16px] py-[14px] text-[17px] leading-[1.6]">
             <L bs="Skulpture" en="Sculptures" /> | <a className="u-link" href="/about">SARTO Studio</a> <L bs="u New Yorku" en="in New York" />
