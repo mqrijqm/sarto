@@ -76,7 +76,7 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
                       <Link
                         href={item.href}
                         onClick={onClose}
-                        className={`font-display text-[clamp(44px,6.6vw,96px)] leading-[1.12] ${
+                        className={`font-display text-[clamp(40px,min(6.6vw,10.5svh),96px)] leading-[1.1] ${
                           active ? "u-link" : "u-link-in"
                         }`}
                         style={{ backgroundSize: active ? "100% 3px" : undefined }}
@@ -99,7 +99,7 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
             </a>
           </div>
         </div>
-        <ul className="flex flex-col items-end max-md:items-start">
+        <ul className="absolute bottom-[30px] right-[var(--gutter)] flex flex-col items-end max-md:static max-md:mt-8 max-md:items-start">
           {LEGAL.map((l) => (
             <li key={l.href} data-side>
               <Link

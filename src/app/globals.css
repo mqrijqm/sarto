@@ -69,11 +69,13 @@ html.lenis body {
   overscroll-behavior: contain;
 }
 
+/* Komponentni stilovi su u @layer components da Tailwind utility klase (npr. max-md:hidden) mogu da ih pregaze */
+@layer components {
 /* ---------- Typography ---------- */
 .t-header {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(46px, 8.35vw, 120px);
+  font-size: clamp(36px, 8.35vw, 120px);
   line-height: 1;
   letter-spacing: -0.005em;
 }
@@ -290,6 +292,8 @@ html.lenis body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
 }
 
 .px-g {

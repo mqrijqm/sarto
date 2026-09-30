@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CartProvider } from "@/components/cart/Cart";
 import "./globals.css";
 
 // Self-hosted (Google Fonts, OFL licenca) — bez zavisnosti od mreže pri buildu
@@ -33,9 +34,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${marcellus.variable} ${cormorant.variable} ${dmsans.variable}`}>
       <body>
         <SmoothScroll>
-          <Header />
-          <main id="main-content">{children}</main>
-          <Footer />
+          <CartProvider>
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-paper focus:p-3">
+              Skip to content
+            </a>
+            <Header />
+            <main id="main-content">{children}</main>
+            <Footer />
+          </CartProvider>
         </SmoothScroll>
       </body>
     </html>
