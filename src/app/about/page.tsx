@@ -23,11 +23,11 @@ export default function About() {
   return (
     <>
       <SecondaryHero className="pb-[200px] pt-[200px] max-md:pb-[100px] max-md:pt-[150px]" eyebrow="_About_ SARTO" title={"_where_ CRAFTSMANSHIP\n_meets_ EMOTION."} />
-      <WideMedia name="wide-about" alt="Groom in a cream suit beside his plaster sculpture" />
+      <WideMedia name="wide-about" alt="Cream peak-lapel suit beside its plaster sculpture" />
 
       <SecondaryHero className="pb-[80px] pt-[180px]" eyebrow="1." title={"_The_ STORY\n_behind_ SARTO."} />
       <section className="grid grid-cols-[57fr_43fr] items-center gap-[10px] px-g max-md:grid-cols-1">
-        <Media name="story-wedding" alt="Wedding day with groomsmen" className="aspect-[797/910]" />
+        <Media name="story-wedding" alt="Wedding suit detail" className="aspect-[797/910]" />
         <Reveal mode="fade" className="mx-auto max-w-[340px] py-10">
           <h3 data-fade className="t-sans-title">Your Suit Should Be Seen</h3>
           <p data-fade className="t-small mt-[36px] leading-[1.6]">
@@ -39,7 +39,7 @@ export default function About() {
           <div data-fade className="mt-[70px] flex items-center gap-[10px]">
             <div className="media h-[50px] w-[50px] shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={m("founder")} alt="Founder portrait" loading="lazy" />
+              <img src={m("founder")} alt="Tailor’s tools" loading="lazy" />
             </div>
             <p className="text-[16px] leading-[1.15]">
               MATTEO ALDRIGHI VANCE,
@@ -79,9 +79,9 @@ export default function About() {
 
       <BgSwitch>
         <SecondaryHero className="pb-[70px] pt-[180px]" title={"_The_ STORY _of the_ NAME\n& SYMBOLISM."} />
-        <SplitSticky image="name-big" alt="Groom putting on his ivory tuxedo jacket">
+        <SplitSticky image="name-big" alt="Ivory tuxedo jacket, close-up">
           <div className="grid grid-cols-2 gap-[10px]">
-            <NumberedCard upper n="I." image="name-family" alt="Groom with family" title="SARTO NAME" body="Sarto is the Italian word for tailor — a tribute to the hands that cut, baste and press every wedding suit, and to the craft we continue in a new form." />
+            <NumberedCard upper n="I." image="name-family" alt="Black tuxedo detail" title="SARTO NAME" body="Sarto is the Italian word for tailor — a tribute to the hands that cut, baste and press every wedding suit, and to the craft we continue in a new form." />
             <NumberedCard upper n="II." image="name-flower" alt="Gardenia boutonniere" title="GARDENIA" body="The gardenia — the classic boutonnière — shapes the SARTO seal, chosen for its sculptural form and its symbolism of refinement, devotion and new beginnings." />
           </div>
           <Reveal mode="fade" className="mx-auto max-w-[400px] py-[130px] text-center">
@@ -99,7 +99,7 @@ export default function About() {
           </Reveal>
           <div className="grid grid-cols-2 gap-[10px]">
             <NumberedCard upper n="III." image="name-emblem" alt="SARTO emblem" title="THE TAILOR" body="Our seal features a seated tailor drawing a single thread — the gesture that begins every garment, an ancient image of patience and precision." />
-            <NumberedCard upper n="IV." image="name-groom" alt="Groom in a cream suit" title="SUNRISE PALETTE" body="Inspired by sunrise and sunset, our palette reflects moments of transition and celebration, capturing the close of a chapter and preserving it in form." />
+            <NumberedCard upper n="IV." image="name-groom" alt="Cream suit, close-up" title="SUNRISE PALETTE" body="Inspired by sunrise and sunset, our palette reflects moments of transition and celebration, capturing the close of a chapter and preserving it in form." />
           </div>
         </SplitSticky>
         <Reassurance />

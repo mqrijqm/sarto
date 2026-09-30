@@ -19,7 +19,7 @@ export default function Process() {
   return (
     <>
       <SecondaryHero className="pb-[200px] pt-[200px] max-md:pb-[100px] max-md:pt-[150px]" eyebrow="_Sculpture_ CREATION PROCESS" title={"_every_ SCULPTURE\nBEGINS _with_ A SUIT."} />
-      <WideMedia name="wide-process" alt="Groom in a charcoal three-piece suit beside his sculpture" />
+      <WideMedia name="wide-process" alt="Charcoal three-piece suit beside its sculpture" />
 
       <SecondaryHero
         className="pb-[120px] pt-[180px]"
@@ -28,7 +28,7 @@ export default function Process() {
         body="Every commission begins with a private consultation. Together, we'll discuss your commission, coordinate the collection of your suit, and personally guide you through every step of the SARTO experience. Throughout the process, the suit remains completely untouched and unaltered, and is returned in the same condition in which we receive it. The sculpture is then hand-finished and delivered as a lasting work of art."
       />
 
-      <SplitSticky image="grid-front" alt="Groom in an ivory double-breasted suit on a plinth">
+      <SplitSticky image="grid-front" alt="Ivory double-breasted suit, close-up">
         <div className="grid grid-cols-2 gap-x-[10px] gap-y-[64px]">
           {STEPS.map((s) => (
             <NumberedCard key={s.n} n={s.n} title={s.title} body={s.body} image={s.img} alt={s.title} />

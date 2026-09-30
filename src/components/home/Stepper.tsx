@@ -11,9 +11,9 @@ import { prefersReducedMotion } from "@/lib/motion";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const PANELS = [
-  { img: "step-1", alt: "Groom in an ivory tuxedo on an ochre plinth", words: "_From_ SUIT," },
+  { img: "step-1", alt: "Ivory tuxedo, close-up", words: "_From_ SUIT," },
   { img: "step-2", alt: "The plaster sculpture of the suit on a grey plinth", words: "_to_ DATA," },
-  { img: "step-3", alt: "Groom beside the finished sculpture", words: "_to_ SCULPTURE." },
+  { img: "step-3", alt: "Tuxedo beside the finished sculpture", words: "_to_ SCULPTURE." },
 ];
 
 /**

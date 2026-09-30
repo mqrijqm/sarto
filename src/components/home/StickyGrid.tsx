@@ -24,7 +24,7 @@ export function StickyGrid() {
 
       <div className="flex flex-col">
         <div className="grid grid-cols-2 gap-[10px]">
-          <Img name="grid-back" alt="Groom beside his sculpture" className="aspect-[335/455]" />
+          <Img name="grid-back" alt="Tuxedo beside its sculpture" className="aspect-[335/455]" />
           <Img name="grid-drape" alt="Plaster jacket back" className="aspect-[335/455]" />
         </div>
 
@@ -46,14 +46,14 @@ export function StickyGrid() {
         </Reveal>
 
         <div className="flex flex-col items-center pb-[150px] pt-[40px] max-md:pb-[90px]">
-          <Img name="grid-small" alt="Groom in cream suit" className="aspect-[131/184] w-[131px]" />
+          <Img name="grid-small" alt="Cream suit detail" className="aspect-[131/184] w-[131px]" />
           <div className="mt-[36px]">
             <Button label="DISCOVER _our_ PROCESS" href="/process" />
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-[10px]">
-          <Img name="grid-front" alt="Groom in ivory double-breasted suit" className="aspect-[335/455]" />
+          <Img name="grid-front" alt="Ivory double-breasted suit detail" className="aspect-[335/455]" />
           <Img name="grid-bust" alt="Plaster sleeve and shoulder" className="aspect-[335/455]" />
         </div>
 

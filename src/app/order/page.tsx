@@ -10,7 +10,7 @@ export default function Order() {
       <div className="sticky top-[180px] flex justify-center max-md:static">
         <OrderPanel />
       </div>
-      <Media name="step-3" alt="Groom looking over his shoulder beside his sculpture" className="aspect-[643/960]" priority />
+      <Media name="step-3" alt="Ivory tuxedo beside its plaster sculpture" className="aspect-[643/960]" priority />
     </section>
   );
 }
