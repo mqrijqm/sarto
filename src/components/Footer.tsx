@@ -7,10 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { FOOTER_NAV, BRAND } from "@/content/site";
 import { prefersReducedMotion } from "@/lib/motion";
+import { useT } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function Footer() {
+  const t = useT();
   const ref = useRef<HTMLElement>(null);
   const [sent, setSent] = useState(false);
 
@@ -39,7 +41,7 @@ export function Footer() {
           {FOOTER_NAV.map((l) => (
             <li key={l.href}>
               <Link href={l.href} className="u-link-in">
-                {l.label}
+                {t(l.label)}
               </Link>
             </li>
           ))}
@@ -54,17 +56,17 @@ export function Footer() {
             }}
           >
             <label htmlFor="nl" className="t-label block text-ink">
-              Stay in touch with the studio
+              {t({ bs: "Ostanite u kontaktu sa studijom", en: "Stay in touch with the studio" })}
             </label>
             <div className="mt-[14px] flex items-center border-b border-ink pb-[8px]">
               <input
                 id="nl"
                 type="email"
                 required
-                placeholder={sent ? "Thank you — we’ll be in touch." : "Email address"}
+                placeholder={sent ? t({ bs: "Hvala — javićemo vam se.", en: "Thank you — we’ll be in touch." }) : t({ bs: "Email adresa", en: "Email address" })}
                 className="w-full bg-transparent font-sans text-[15px] tracking-[0.02em] outline-none placeholder:text-ink/60"
               />
-              <button type="submit" aria-label="Subscribe" className="px-[6px] text-[20px] transition-transform hover:translate-x-1">
+              <button type="submit" aria-label={t({ bs: "Prijavi se", en: "Subscribe" })} className="px-[6px] text-[20px] transition-transform hover:translate-x-1">
                 ⟶
               </button>
             </div>
@@ -105,10 +107,10 @@ export function Footer() {
       <div className="flex items-end justify-between gap-6 px-g pb-[24px] pt-[40px] font-sans text-[15px] font-medium leading-[1] text-mute max-md:flex-col max-md:items-start">
         <ul className="flex flex-wrap gap-x-[44px] gap-y-3">
           {[
-            ["Accessibility", "/accessibility"],
-            ["Terms & Conditions", "/legals/terms"],
-            ["Privacy Policy", "/legals/policy"],
-            ["Featured Tailors", "/featured-designers"],
+            [t({ bs: "Pristupačnost", en: "Accessibility" }), "/accessibility"],
+            [t({ bs: "Uslovi korištenja", en: "Terms & Conditions" }), "/legals/terms"],
+            [t({ bs: "Privatnost", en: "Privacy Policy" }), "/legals/policy"],
+            [t({ bs: "Krojači", en: "Featured Tailors" }), "/featured-designers"],
           ].map(([l, h]) => (
             <li key={h}>
               <Link href={h} className="transition-colors hover:text-ink">
@@ -118,9 +120,9 @@ export function Footer() {
           ))}
         </ul>
         <div className="flex gap-[70px]">
-          <span>All Rights Reserved © {new Date().getFullYear()}</span>
+          <span>{t({ bs: "Sva prava zadržana", en: "All Rights Reserved" })} © {new Date().getFullYear()}</span>
           <Link href="/featured-designers" className="u-link">
-            Credits
+            {t({ bs: "Zasluge", en: "Credits" })}
           </Link>
         </div>
       </div>

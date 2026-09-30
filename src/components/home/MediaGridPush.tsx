@@ -81,7 +81,7 @@ export function MediaGridPush({ items = GRID_ITEMS }: { items?: string[] }) {
       <div className="pointer-events-none absolute inset-0 pt-[100px]">
         <div className="sticky top-[calc(50svh-22px)] flex justify-center pb-[40vh]">
           <div className="pointer-events-auto">
-            <Button label="_Explore the_ GALLERY" href="/gallery" className="w-[270px]" />
+            <Button label={{ bs: "_Istražite_ GALERIJU", en: "_Explore the_ GALLERY" }} href="/gallery" className="w-[270px]" />
           </div>
         </div>
       </div>

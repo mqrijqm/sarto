@@ -1,27 +1,28 @@
 export const BRAND = "SARTO";
 
+// tekstovi su { bs, en } — prevod bira useT()/t() u komponenti
 export const NAV = [
-  { n: "I.", label: "HOME", href: "/" },
-  { n: "II.", label: "ABOUT US", href: "/about" },
-  { n: "III.", label: "PROCESS", href: "/process" },
-  { n: "IV.", label: "GALLERY", href: "/gallery" },
-  { n: "V.", label: "ORDER", href: "/product" },
-  { n: "VI.", label: "REGISTRY", href: "/registry" },
+  { n: "I.", label: { bs: "POČETNA", en: "HOME" }, href: "/" },
+  { n: "II.", label: { bs: "O NAMA", en: "ABOUT US" }, href: "/about" },
+  { n: "III.", label: { bs: "PROCES", en: "PROCESS" }, href: "/process" },
+  { n: "IV.", label: { bs: "GALERIJA", en: "GALLERY" }, href: "/gallery" },
+  { n: "V.", label: { bs: "NARUČI", en: "ORDER" }, href: "/product" },
+  { n: "VI.", label: { bs: "LISTA ŽELJA", en: "REGISTRY" }, href: "/registry" },
 ];
 
 export const LEGAL = [
-  { label: "FAQ", href: "/legals/faq" },
-  { label: "Featured Tailors & Photography", href: "/featured-designers" },
-  { label: "Terms & Conditions", href: "/legals/terms" },
-  { label: "Privacy Policy", href: "/legals/policy" },
+  { label: { bs: "Česta pitanja", en: "FAQ" }, href: "/legals/faq" },
+  { label: { bs: "Krojači i fotografi", en: "Featured Tailors & Photography" }, href: "/featured-designers" },
+  { label: { bs: "Uslovi korištenja", en: "Terms & Conditions" }, href: "/legals/terms" },
+  { label: { bs: "Politika privatnosti", en: "Privacy Policy" }, href: "/legals/policy" },
 ];
 
 export const FOOTER_NAV = [
-  { label: "Home", href: "/" },
-  { label: "Order", href: "/product" },
-  { label: "Process", href: "/process" },
-  { label: "About", href: "/about" },
-  { label: "Gallery", href: "/gallery" },
+  { label: { bs: "Početna", en: "Home" }, href: "/" },
+  { label: { bs: "Naruči", en: "Order" }, href: "/product" },
+  { label: { bs: "Proces", en: "Process" }, href: "/process" },
+  { label: { bs: "O nama", en: "About" }, href: "/about" },
+  { label: { bs: "Galerija", en: "Gallery" }, href: "/gallery" },
 ];
 
 export const CONTACT = {

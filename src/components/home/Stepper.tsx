@@ -7,13 +7,14 @@ import { useGSAP } from "@gsap/react";
 import { Rich } from "../Rich";
 import { m } from "@/content/site";
 import { prefersReducedMotion } from "@/lib/motion";
+import { useLang, useT } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const PANELS = [
-  { img: "step-1", alt: "Ivory tuxedo, close-up", words: "_From_ SUIT," },
-  { img: "step-2", alt: "The plaster sculpture of the suit on a grey plinth", words: "_to_ DATA," },
-  { img: "step-3", alt: "Tuxedo beside the finished sculpture", words: "_to_ SCULPTURE." },
+  { img: "step-1", alt: { bs: "Smoking od slonovače, krupni plan", en: "Ivory tuxedo, close-up" }, words: { bs: "_Od_ ODIJELA,", en: "_From_ SUIT," } },
+  { img: "step-2", alt: { bs: "Gipsana skulptura odijela na sivom postamentu", en: "The plaster sculpture of the suit on a grey plinth" }, words: { bs: "_do_ PODATAKA,", en: "_to_ DATA," } },
+  { img: "step-3", alt: { bs: "Smoking pored gotove skulpture", en: "Tuxedo beside the finished sculpture" }, words: { bs: "_do_ SKULPTURE.", en: "_to_ SCULPTURE." } },
 ];
 
 /**
@@ -23,6 +24,8 @@ const PANELS = [
  */
 export function Stepper() {
   const root = useRef<HTMLElement>(null);
+  const { lang } = useLang();
+  const t = useT();
 
   useGSAP(
     () => {
@@ -106,7 +109,8 @@ export function Stepper() {
       setActive(0);
       return () => mm.revert();
     },
-    { scope: root },
+    // nova rečenica (drugi jezik) => ponovo izmeri položaje reči
+    { scope: root, dependencies: [lang], revertOnUpdate: true },
   );
 
   return (
@@ -114,17 +118,17 @@ export function Stepper() {
       {/* naslov iza kartice */}
       <div data-heading className="absolute inset-x-0 top-[19svh] px-g text-center">
         <p className="t-eyebrow mb-[38px]">
-          <Rich text="_the_ ESSENCE _of_ SARTO" dot={false} />
+          <Rich text={t({ bs: "SUŠTINA _SARTA_", en: "_the_ ESSENCE _of_ SARTO" })} dot={false} />
         </p>
         <h2 className="t-header">
-          <Rich text={"_where_ INNOVATION\n_meets_ CRAFTSMANSHIP"} />
+          <Rich text={t({ bs: "_gdje se_ INOVACIJA\n_susreće sa_ ZANATOM", en: "_where_ INNOVATION\n_meets_ CRAFTSMANSHIP" })} />
         </h2>
       </div>
 
       {PANELS.map((p, i) => (
         <div key={p.img} data-panel className="absolute inset-0 overflow-hidden" style={{ zIndex: i + 1 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={m(p.img)} alt={p.alt} className="h-full w-full object-cover" loading="lazy" />
+          <img src={m(p.img)} alt={t(p.alt)} className="h-full w-full object-cover" loading="lazy" />
         </div>
       ))}
 
@@ -144,7 +148,7 @@ export function Stepper() {
         >
           {PANELS.map((p, i) => (
             <span key={i} data-word className="mr-[0.3em] opacity-45">
-              <Rich text={p.words} />
+              <Rich text={t(p.words)} />
             </span>
           ))}
         </p>

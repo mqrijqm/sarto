@@ -4,29 +4,29 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { useLenis } from "lenis/react";
+import { usePathname } from "next/navigation";
 import { useLang } from "@/lib/i18n";
 import { prefersReducedMotion } from "@/lib/motion";
 
 const Coin3D = dynamic(() => import("./webgl/Coin3D").then((x) => x.Coin3D), { ssr: false });
 
-// šta mora da bude spremno pre nego što sajt "izađe" iza splasha
-const CRITICAL = [
-  "/media/hero-1.webp",
-  "/media/hero-2.webp",
-  "/media/hero-3.webp",
-  "/media/coin-front.webp",
-  "/media/coin-back.webp",
-  "/media/marble-tex.webp",
-  "/models/suit.glb",
-];
+// šta mora da bude spremno pre nego što sajt "izađe" iza splasha — zavisi od stranice
+const BASE = ["/media/coin-front.webp", "/media/coin-back.webp"];
+const CRITICAL: Record<string, string[]> = {
+  "/": ["/media/hero-1.webp", "/media/hero-2.webp", "/media/hero-3.webp", "/media/marble-tex.webp", "/models/suit.glb"],
+  "/about": ["/media/wide-about.webp"],
+  "/process": ["/media/wide-process.webp"],
+  "/product": ["/media/sculpt-tux.webp", "/media/depth-tux.webp"],
+  "/order": ["/media/step-3.webp"],
+};
 
 const VERBS = {
   bs: ["Uzimamo mjere", "Krojimo", "Režemo", "Šijemo", "Peglamo", "Skeniramo", "Vajamo", "Poliramo mramor"],
   en: ["Taking measurements", "Cutting the pattern", "Trimming", "Sewing", "Pressing", "Scanning", "Sculpting", "Polishing the marble"],
 };
 
-const MIN_MS = 2400;
-const MAX_MS = 9000;
+const MIN_MS = 2200;
+const MAX_MS = 5000;
 
 /** Globalni splash: 3D novčić lebdi i vrti se, ispod 0–100% i glagoli koji se smenjuju. */
 export function Splash() {
@@ -36,11 +36,12 @@ export function Splash() {
   const [verb, setVerb] = useState(0);
   const { lang } = useLang();
   const lenis = useLenis();
+  const pathname = usePathname();
 
   // glagoli se smenjuju
   useEffect(() => {
     if (done) return;
-    const id = window.setInterval(() => setVerb((v) => (v + 1) % VERBS.bs.length), 700);
+    const id = window.setInterval(() => setVerb((v) => (v + 1) % VERBS.bs.length), 950);
     return () => window.clearInterval(id);
   }, [done]);
 
@@ -70,11 +71,12 @@ export function Splash() {
     const bar = q("[data-bar]")[0] as HTMLElement;
     const start = performance.now();
     let loaded = 0;
-    const total = CRITICAL.length + 1;
+    const list = [...BASE, ...(CRITICAL[pathname] ?? [])];
+    const total = list.length + 1;
     const bump = () => loaded++;
 
     // preuzmi kritične fajlove u keš browsera
-    const jobs: Promise<unknown>[] = CRITICAL.map((u) =>
+    const jobs: Promise<unknown>[] = list.map((u) =>
       fetch(u)
         .then((r) => r.blob())
         .catch(() => null)
@@ -89,15 +91,20 @@ export function Splash() {
       pct.textContent = `${Math.round(shown.v)}%`;
       bar.style.transform = `scaleX(${shown.v / 100})`;
     };
-    // procenat prati stvarno učitavanje, ali ne brže od minimalnog trajanja
+    // procenat prati stvarno učitavanje, ali ne brže od minimalnog trajanja.
+    // Peglanje je vezano za VREME (dt), ne za broj frejmova — radi isto i na sporom računaru.
+    let lastT = performance.now();
     const tick = () => {
       if (finished) return;
-      const t = performance.now() - start;
+      const now = performance.now();
+      const dt = Math.min(0.25, (now - lastT) / 1000);
+      lastT = now;
+      const t = now - start;
       const real = (loaded / total) * 100;
       const time = Math.min(100, (t / MIN_MS) * 100);
       const target = Math.min(real, time);
-      shown.v += (target - shown.v) * 0.08;
-      if (target >= 100 && shown.v > 99.4) shown.v = 100;
+      shown.v += (target - shown.v) * (1 - Math.exp(-dt * 7));
+      if (target >= 100 && shown.v > 98.5) shown.v = 100;
       render();
       if (shown.v >= 100) {
         finished = true;
@@ -166,7 +173,7 @@ export function Splash() {
       <style>{`
         .splash-float{animation:splashFloat 3.2s ease-in-out infinite}
         .splash-shadow{animation:splashShadow 3.2s ease-in-out infinite}
-        .splash-verb{animation:splashVerb .7s var(--ease-out-expo) both}
+        .splash-verb{animation:splashVerb .45s var(--ease-out-expo) both}
         @keyframes splashFloat{0%,100%{transform:translateY(-10px) rotateX(8deg)}50%{transform:translateY(12px) rotateX(-8deg)}}
         @keyframes splashShadow{0%,100%{opacity:.45;transform:translateX(-50%) scale(.8)}50%{opacity:.9;transform:translateX(-50%) scale(1.05)}}
         @keyframes splashVerb{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}

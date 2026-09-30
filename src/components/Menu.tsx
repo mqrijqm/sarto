@@ -6,9 +6,11 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { useLenis } from "lenis/react";
 import { NAV, LEGAL, CONTACT } from "@/content/site";
+import { useT } from "@/lib/i18n";
 
 /** Panel koji se spušta odozgo (≈85vh), stavke ulaze stagger animacijom. */
 export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const t = useT();
   const root = useRef<HTMLDivElement>(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
   const pathname = usePathname();
@@ -65,7 +67,7 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
         }}
       >
         <div className="flex items-start justify-between gap-8 max-md:flex-col">
-          <nav aria-label="Main">
+          <nav aria-label={t({ bs: "Glavna navigacija", en: "Main" })}>
             <ul className="flex flex-col">
               {NAV.map((item) => {
                 const active = item.href === pathname;
@@ -81,7 +83,7 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
                         }`}
                         style={{ backgroundSize: active ? "100% 3px" : undefined }}
                       >
-                        {item.label}
+                        {t(item.label)}
                       </Link>
                     </div>
                   </li>
@@ -90,7 +92,7 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
             </ul>
           </nav>
           <div data-side className="text-right text-[20px] leading-[1.05] max-md:text-left max-md:text-[16px]">
-            <p>Contact:</p>
+            <p>{t({ bs: "Kontakt:", en: "Contact:" })}</p>
             <a href={`tel:${CONTACT.phone.replace(/[^+\d]/g, "")}`} className="block">
               {CONTACT.phone}
             </a>
@@ -107,7 +109,7 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
                 onClick={onClose}
                 className="rt-i u-link-in text-[21px] leading-[1.1] text-mute transition-colors hover:text-ink"
               >
-                {l.label}
+                {t(l.label)}
               </Link>
             </li>
           ))}

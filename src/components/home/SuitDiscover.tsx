@@ -13,6 +13,7 @@ import type { StageState } from "../webgl/SuitStage";
 import type { SculptState } from "../webgl/DepthSculpture";
 import { m } from "@/content/site";
 import { prefersReducedMotion } from "@/lib/motion";
+import { useT } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -30,6 +31,7 @@ const GLB = "/models/suit.glb";
  */
 export function SuitDiscover() {
   const root = useRef<HTMLElement>(null);
+  const t = useT();
   const state = useRef<StageState>({ progress: 0, pointerX: 0, pointerY: 0 });
   const sculpt = useRef<SculptState>({ angle: -0.9, zoom: 2.05, y: 1.35, fade: 1, pointerX: 0, pointerY: 0, opacity: 1 });
   // postoji li pravi 3D model? (spusti ga u public/models/suit.glb)
@@ -104,7 +106,7 @@ export function SuitDiscover() {
           {/* naslov IZA modela */}
           <div data-important className="absolute inset-x-0 top-[21svh] z-0 px-g text-center">
             <h2 className="t-header" style={{ fontSize: "clamp(52px, 8.35vw, 120px)" }}>
-              <Rich text={"YOUR MOST\n_important_ SUIT"} lines dot={false} />
+              <Rich text={t({ bs: "VAŠE NAJVAŽNIJE\n_vjenčano_ ODIJELO", en: "YOUR MOST\n_important_ SUIT" })} lines dot={false} />
             </h2>
           </div>
           {hasGlb === true && <SuitStage state={state} className="absolute inset-0 z-10 [mask-image:linear-gradient(to_bottom,#000_82%,transparent_99%)]" />}
@@ -117,7 +119,7 @@ export function SuitDiscover() {
         <div className="pointer-events-none absolute inset-x-0 top-[38%] z-20 h-[100svh]">
           <div className="sticky top-0 flex h-[100svh] items-end justify-center pb-[6vh]">
             <h2 data-deserve className="t-header text-center" style={{ fontSize: "clamp(52px, 8.35vw, 120px)" }}>
-              <Rich text={"DESERVES TO\nLAST  _forever._"} lines />
+              <Rich text={t({ bs: "ZASLUŽUJE DA\nTRAJE  _zauvijek._", en: "DESERVES TO\nLAST  _forever._" })} lines />
             </h2>
           </div>
         </div>
@@ -126,15 +128,19 @@ export function SuitDiscover() {
       <section className="relative -mt-[14svh] px-g pb-[240px] text-center max-md:pb-[140px]">
         <Reveal mode="fade" className="mx-auto max-w-[460px]">
           <h2 data-fade className="t-sans-title">
-            SARTO is a luxury fine-art studio that transforms your wedding suit into a timeless sculpture.
+            {t({
+              bs: "SARTO je luksuzni umjetnički studio koji vaše vjenčano odijelo pretvara u bezvremensku skulpturu.",
+              en: "SARTO is a luxury fine-art studio that transforms your wedding suit into a timeless sculpture.",
+            })}
           </h2>
           <p data-fade className="t-body mx-auto mt-[22px] max-w-[450px]">
-            Each SARTO sculpture stands approximately 16 inches tall and weighs 5–10 pounds. Carved in marble-white
-            plaster, ceramic, and resin, every piece is crafted with exceptional precision and detail, exactly as it was
-            worn on your wedding day.
+            {t({
+              bs: "Svaka SARTO skulptura visoka je oko 40 cm i teška 2–5 kg. Izrađena od mramorno bijelog gipsa, keramike i smole, svaka je oblikovana s izuzetnom preciznošću i detaljima — tačno onako kako ste ga nosili na dan vjenčanja.",
+              en: "Each SARTO sculpture stands approximately 16 inches tall and weighs 5–10 pounds. Carved in marble-white plaster, ceramic, and resin, every piece is crafted with exceptional precision and detail, exactly as it was worn on your wedding day.",
+            })}
           </p>
           <div data-fade className="mt-[58px]">
-            <Button label="_Start your_ COMMISSION" href="/order" />
+            <Button label={{ bs: "_Započnite svoju_ NARUDŽBU", en: "_Start your_ COMMISSION" }} href="/order" />
           </div>
         </Reveal>
       </section>

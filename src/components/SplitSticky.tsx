@@ -1,4 +1,7 @@
+"use client";
+
 import { Media } from "./Media";
+import { useT, type Loc } from "@/lib/i18n";
 
 /** Levo: velika sticky slika preko cele visine ekrana. Desno: sadržaj koji skroluje. */
 export function SplitSticky({ image, alt, children, className = "" }: { image: string; alt: string; children: React.ReactNode; className?: string }) {
@@ -24,18 +27,19 @@ export function NumberedCard({
   upper,
 }: {
   n: string;
-  title: string;
-  body: string;
+  title: Loc;
+  body: Loc;
   image: string;
-  alt?: string;
+  alt?: Loc;
   upper?: boolean;
 }) {
+  const t = useT();
   return (
     <article>
-      <Media name={image} alt={alt} className="aspect-[335/460]" />
+      <Media name={image} alt={t(alt)} className="aspect-[335/460]" />
       <p className="t-body mt-[22px]">{n}</p>
-      <h3 className={`t-sans-title mt-[20px] ${upper ? "uppercase" : ""}`}>{title}</h3>
-      <p className="t-small mt-[34px] max-w-[300px] leading-[1.25]">{body}</p>
+      <h3 className={`t-sans-title mt-[20px] ${upper ? "uppercase" : ""}`}>{t(title)}</h3>
+      <p className="t-small mt-[34px] max-w-[300px] leading-[1.25]">{t(body)}</p>
     </article>
   );
 }

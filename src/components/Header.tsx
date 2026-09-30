@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useLang, useT } from "@/lib/i18n";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { RollText } from "./Button";
@@ -48,12 +49,14 @@ export function Header() {
     };
   }, [pathname]);
 
+  const t = useT();
   const cta =
     pathname === "/product"
-      ? { label: "TALK _to a_ SCULPTURE _advisor_", href: "/legals/faq" }
+      ? { label: { bs: "RAZGOVARAJTE _sa_ SAVJETNIKOM", en: "TALK _to a_ SCULPTURE _advisor_" }, href: "/legals/faq" }
       : pathname === "/order"
         ? null
-        : { label: "_Start your_ COMMISSION", href: "/order" };
+        : { label: { bs: "_Započnite svoju_ NARUDŽBU", en: "_Start your_ COMMISSION" }, href: "/order" };
+  const menuLabel = t({ bs: "MENI", en: "MENU" });
 
   const frost = dark && !open;
 
@@ -70,13 +73,15 @@ export function Header() {
         >
           <span className="roll">
             <span className="roll__inner">
-              <span className="block">{open ? <CloseLabel /> : "MENU"}</span>
+              <span className="block">{open ? <CloseLabel /> : menuLabel}</span>
               <span className="roll__copy" aria-hidden>
-                {open ? <CloseLabel /> : "MENU"}
+                {open ? <CloseLabel /> : menuLabel}
               </span>
             </span>
           </span>
         </button>
+        <div className="flex items-start gap-[10px]">
+        <LangToggle frost={frost} hidden={open} />
         {cta && (
           <Link
             href={cta.href}
@@ -87,10 +92,11 @@ export function Header() {
             <RollText label={cta.label} />
           </Link>
         )}
+        </div>
       </header>
       {pathname !== "/" && (
         <div className="absolute inset-x-0 top-[var(--header-top)] z-40 flex h-[45px] items-center justify-center">
-          <Link href="/" aria-label="SARTO home">
+          <Link href="/" aria-label={t({ bs: "SARTO početna", en: "SARTO home" })}>
             <Logo className="h-[30px] max-md:h-[22px]" />
           </Link>
         </div>
@@ -100,10 +106,37 @@ export function Header() {
 }
 
 function CloseLabel() {
+  const t = useT();
   return (
     <span className="inline-flex items-center gap-[8px]">
       <span className="inline-block h-[5px] w-[5px] rotate-45 bg-current" />
-      CLOSE
+      {t({ bs: "ZATVORI", en: "CLOSE" })}
     </span>
+  );
+}
+
+/** BS / EN prekidač — isti stil kao ostala dugmad u headeru. */
+function LangToggle({ frost, hidden }: { frost: boolean; hidden: boolean }) {
+  const { lang, setLang } = useLang();
+  return (
+    <div
+      role="group"
+      aria-label="Language / Jezik"
+      className={`btn pointer-events-auto gap-[10px] px-[18px] transition-opacity duration-500 ${frost ? "btn--frost" : ""} ${hidden ? "opacity-0" : ""}`}
+    >
+      {(["bs", "en"] as const).map((l, i) => (
+        <span key={l} className="flex items-center gap-[10px]">
+          {i > 0 && <span className="inline-block h-[4px] w-[4px] rotate-45 bg-current opacity-40" />}
+          <button
+            type="button"
+            onClick={() => setLang(l)}
+            aria-pressed={lang === l}
+            className={`uppercase transition-opacity duration-300 ${lang === l ? "opacity-100" : "opacity-55 hover:opacity-90"}`}
+          >
+            {l}
+          </button>
+        </span>
+      ))}
+    </div>
   );
 }

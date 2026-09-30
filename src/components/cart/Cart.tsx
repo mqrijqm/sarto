@@ -5,6 +5,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { useLenis } from "lenis/react";
 import { m } from "@/content/site";
+import { L, useT } from "@/lib/i18n";
 import { Button } from "../Button";
 
 export type CartLine = { id: string; title: string; style: string; image: string; price: number; qty: number };
@@ -68,6 +69,7 @@ function CartDrawer() {
   const { lines, open, setOpen, setQty, total } = useCart();
   const root = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
+  const t = useT();
 
   useEffect(() => {
     const el = root.current!;
@@ -94,19 +96,19 @@ function CartDrawer() {
   return (
     <div ref={root} className="invisible fixed inset-0 z-[80]" aria-hidden={!open} inert={!open}>
       <div data-scrim className="absolute inset-0 bg-ink/30 opacity-0" onClick={() => setOpen(false)} />
-      <aside data-sheet role="dialog" aria-label="Your commission" className="absolute inset-y-0 right-0 flex w-[min(460px,100%)] flex-col bg-beige px-[30px] pb-[30px] pt-[34px]">
+      <aside data-sheet role="dialog" aria-label={t({ bs: "Vaša narudžba", en: "Your commission" })} className="absolute inset-y-0 right-0 flex w-[min(460px,100%)] flex-col bg-beige px-[30px] pb-[30px] pt-[34px]">
         <div data-in className="flex items-center justify-between">
           <p className="t-eyebrow">
-            <span className="rt-i">Your</span> COMMISSION
+            <L bs={<><span className="rt-i">Vaša</span> NARUDŽBA</>} en={<><span className="rt-i">Your</span> COMMISSION</>} />
           </p>
           <button className="t-small u-link-in" onClick={() => setOpen(false)}>
-            Close
+            <L bs="Zatvori" en="Close" />
           </button>
         </div>
         <div className="mt-[34px] flex-1 overflow-y-auto border-t border-line" data-lenis-prevent>
           {lines.length === 0 && (
             <p data-in className="t-body py-[40px] text-mute">
-              No commission yet. Choose a suit style to begin.
+              <L bs="Još nema narudžbe. Izaberite stil odijela da počnete." en="No commission yet. Choose a suit style to begin." />
             </p>
           )}
           {lines.map((l) => (
@@ -120,9 +122,9 @@ function CartDrawer() {
                 <p className="t-small mt-[6px] text-mute">{l.style}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <div className="flex items-center gap-[14px] font-sans text-[15px]">
-                    <button aria-label="Decrease" onClick={() => setQty(l.id, l.qty - 1)} className="h-[26px] w-[26px] border border-line">−</button>
+                    <button aria-label={t({ bs: "Smanji", en: "Decrease" })} onClick={() => setQty(l.id, l.qty - 1)} className="h-[26px] w-[26px] border border-line">−</button>
                     <span>{l.qty}</span>
-                    <button aria-label="Increase" onClick={() => setQty(l.id, l.qty + 1)} className="h-[26px] w-[26px] border border-line">+</button>
+                    <button aria-label={t({ bs: "Povećaj", en: "Increase" })} onClick={() => setQty(l.id, l.qty + 1)} className="h-[26px] w-[26px] border border-line">+</button>
                   </div>
                   <span className="font-sans text-[15px]">{money(l.price * l.qty)}</span>
                 </div>
@@ -132,15 +134,15 @@ function CartDrawer() {
         </div>
         <div data-in className="pt-[20px]">
           <div className="flex justify-between font-sans text-[15px] font-medium">
-            <span>Subtotal</span>
+            <span><L bs="Ukupno" en="Subtotal" /></span>
             <span>{money(total)}</span>
           </div>
-          <p className="t-small mt-[8px] text-mute">A deposit of 50% secures your place. Our team will contact you within 48 hours to arrange the collection of your suit.</p>
+          <p className="t-small mt-[8px] text-mute"><L bs="Depozit od 50% osigurava vaše mjesto. Naš tim će vas kontaktirati u roku od 48 sati da dogovori preuzimanje odijela." en="A deposit of 50% secures your place. Our team will contact you within 48 hours to arrange the collection of your suit." /></p>
           <div className="mt-[22px]" onClick={() => setOpen(false)}>
-            <Button label="PROCEED _to_ CHECKOUT" href="/order" variant="dark" block />
+            <Button label={{ bs: "NASTAVITE _na_ PLAĆANJE", en: "PROCEED _to_ CHECKOUT" }} href="/order" variant="dark" block />
           </div>
           <Link href="/legals/faq" onClick={() => setOpen(false)} className="t-small u-link-in mt-[14px] block text-center">
-            Questions before you begin?
+            <L bs="Pitanja prije početka?" en="Questions before you begin?" />
           </Link>
         </div>
       </aside>

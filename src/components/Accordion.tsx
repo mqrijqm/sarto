@@ -2,8 +2,14 @@
 
 import { useRef, useState } from "react";
 import gsap from "gsap";
+import { isValidElement } from "react";
+import { useT, type Loc } from "@/lib/i18n";
 
-type Item = { q: string; a: React.ReactNode };
+type Item = { q: Loc; a: React.ReactNode | Loc };
+
+// { bs, en } objekat (a ne React element) => prevod
+const isLoc = (v: unknown): v is { bs: string; en: string } =>
+  !!v && typeof v === "object" && !isValidElement(v) && "bs" in (v as object) && "en" in (v as object);
 
 /**
  * Harmonika. `variant="faq"`: veliko sans pitanje, odgovor u desnoj polovini (FAQ, Featured).
@@ -39,6 +45,8 @@ function Row({ item, open, onToggle, variant }: { item: Item; open: boolean; onT
   }
 
   const faq = variant === "faq";
+  const t = useT();
+  const answer = isLoc(item.a) ? t(item.a) : item.a;
   return (
     <div className={faq ? "border-b border-[#b9b5b1]" : ""}>
       <button
@@ -47,7 +55,7 @@ function Row({ item, open, onToggle, variant }: { item: Item; open: boolean; onT
         onClick={onToggle}
         className={`flex w-full items-center justify-between text-left ${faq ? "py-[18px]" : "py-[10px]"}`}
       >
-        <span className={faq ? "t-sans-title" : "t-body"}>{item.q}</span>
+        <span className={faq ? "t-sans-title" : "t-body"}>{t(item.q)}</span>
         <span className="relative ml-6 h-[16px] w-[16px] shrink-0" aria-hidden>
           <span className="absolute left-0 top-1/2 h-[1.5px] w-full -translate-y-1/2 bg-ink" />
           <span
@@ -59,7 +67,7 @@ function Row({ item, open, onToggle, variant }: { item: Item; open: boolean; onT
       <div ref={setRef} className="overflow-hidden">
         <div className={faq ? "grid grid-cols-2 pb-[36px] max-md:grid-cols-1" : "pb-[14px]"}>
           {faq && <span />}
-          <div className={faq ? "t-body leading-[1.5]" : "t-small leading-[1.45] text-ink/80"}>{item.a}</div>
+          <div className={faq ? "t-body leading-[1.5]" : "t-small leading-[1.45] text-ink/80"}>{answer}</div>
         </div>
       </div>
     </div>

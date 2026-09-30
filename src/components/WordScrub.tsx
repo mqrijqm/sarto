@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Rich } from "./Rich";
 import { prefersReducedMotion } from "@/lib/motion";
+import { useLang, useT, type Loc } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -13,8 +14,10 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
  * Veliki naslov: svaki red se podiže
  * iz maske, stepenasto jedan za drugim, kad naslov uđe u ekran (About → Our VISION).
  */
-export function WordScrub({ text, className = "" }: { text: string; className?: string }) {
+export function WordScrub({ text, className = "" }: { text: Loc; className?: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
+  const t = useT();
+  const { lang } = useLang();
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
@@ -32,11 +35,11 @@ export function WordScrub({ text, className = "" }: { text: string; className?: 
         },
       );
     },
-    { scope: ref },
+    { scope: ref, dependencies: [lang], revertOnUpdate: true },
   );
   return (
     <h2 ref={ref} className={className}>
-      <Rich text={text} lines />
+      <Rich text={t(text)} lines />
     </h2>
   );
 }

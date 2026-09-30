@@ -15,11 +15,15 @@ export default function Home() {
       <Stepper />
       <SecondaryHero
         className="pb-[70px] pt-[200px] max-md:pt-[120px]"
-        eyebrow="_a_ PROCESS BUILT _for_ PERFECTION"
-        title={"_so_ THAT YOU\nBECOME ART."}
+        eyebrow={{ bs: "PROCES _stvoren za_ SAVRŠENSTVO", en: "_a_ PROCESS BUILT _for_ PERFECTION" }}
+        title={{ bs: "_da biste_ VI\nPOSTALI UMJETNOST.", en: "_so_ THAT YOU\nBECOME ART." }}
       />
       <StickyGrid />
-      <SecondaryHero className="pt-[40px]" eyebrow="_your_ MEMORY" title={"_will_ FOREVER\n_be a_ MASTERPIECE."} />
+      <SecondaryHero
+        className="pt-[40px]"
+        eyebrow={{ bs: "_vaša_ USPOMENA", en: "_your_ MEMORY" }}
+        title={{ bs: "_zauvijek će biti_\nREMEK-DJELO.", en: "_will_ FOREVER\n_be a_ MASTERPIECE." }}
+      />
       <MediaGridPush />
       <LargeQuote />
       <Reassurance />
