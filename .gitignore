@@ -58,3 +58,6 @@ next-env.d.ts
 /_gen/qseq/
 /_gen/*.glb
 /_gen/*.tsx.txt
+
+.vercel
+.env*
