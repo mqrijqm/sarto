@@ -72,7 +72,7 @@ export function MediaGridPush({ items = GRID_ITEMS }: { items?: string[] }) {
           <div key={name + i} data-col-shift={i % 5} className={`flex ${["justify-start", "justify-center", "justify-center", "justify-center", "justify-end"][i % 5]} max-md:justify-center`}>
             <div data-cell className="media aspect-[153/191] w-[min(153px,100%)] md:w-[10.6vw] md:max-w-[190px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={m(name)} alt="" loading="lazy" />
+              <img src={m(name, "sm")} alt="" loading="lazy" decoding="async" />
             </div>
           </div>
         ))}

@@ -10,8 +10,8 @@ import { prefersReducedMotion } from "@/lib/motion";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
- * Veliki naslov čiji redovi ulaze vezano za skrol (scrub): svaki red se podiže
- * iz maske i blago "stepenasto" kasni za prethodnim (About → Our VISION).
+ * Veliki naslov: svaki red se podiže
+ * iz maske, stepenasto jedan za drugim, kad naslov uđe u ekran (About → Our VISION).
  */
 export function WordScrub({ text, className = "" }: { text: string; className?: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
@@ -23,10 +23,12 @@ export function WordScrub({ text, className = "" }: { text: string; className?: 
         lines,
         { yPercent: 100 },
         {
+          // bez scrub-a: red se uvek izdigne do kraja (scrub je ostavljao slova napola isečena)
           yPercent: 0,
-          ease: "power2.out",
-          stagger: 0.25,
-          scrollTrigger: { trigger: ref.current, start: "top 90%", end: "bottom 60%", scrub: 0.6 },
+          duration: 1.4,
+          ease: "expo.out",
+          stagger: 0.12,
+          scrollTrigger: { trigger: ref.current, start: "top 80%", once: true },
         },
       );
     },

@@ -21,9 +21,16 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     gsap.ticker.lagSmoothing(0);
     const lenis = lenisRef.current?.lenis;
     lenis?.on("scroll", ScrollTrigger.update);
+    // promena jezika / kraj splasha / učitani fontovi menjaju visine => ponovo izmeri
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("sarto:lang", refresh);
+    window.addEventListener("sarto:ready", refresh);
+    document.fonts?.ready.then(refresh);
     return () => {
       gsap.ticker.remove(update);
       lenis?.off("scroll", ScrollTrigger.update);
+      window.removeEventListener("sarto:lang", refresh);
+      window.removeEventListener("sarto:ready", refresh);
     };
   }, []);
 

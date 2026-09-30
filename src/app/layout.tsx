@@ -4,6 +4,9 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CartProvider } from "@/components/cart/Cart";
+import { Splash } from "@/components/Splash";
+import { LangProvider, type Lang } from "@/lib/i18n";
+import { cookies } from "next/headers";
 import "./globals.css";
 
 // Self-hosted (Google Fonts, OFL licenca) — bez zavisnosti od mreže pri buildu
@@ -29,20 +32,25 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#f3f0ed" };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  // jezik: bosanski podrazumevano, engleski ako je korisnik izabrao (kolačić)
+  const lang: Lang = (await cookies()).get("lang")?.value === "en" ? "en" : "bs";
   return (
-    <html lang="en" className={`${marcellus.variable} ${cormorant.variable} ${dmsans.variable}`}>
+    <html lang={lang} className={`${marcellus.variable} ${cormorant.variable} ${dmsans.variable}`}>
       <body>
+        <LangProvider initial={lang}>
         <SmoothScroll>
           <CartProvider>
             <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-paper focus:p-3">
-              Skip to content
+              {lang === "bs" ? "Preskoči na sadržaj" : "Skip to content"}
             </a>
+            <Splash />
             <Header />
             <main id="main-content">{children}</main>
             <Footer />
           </CartProvider>
         </SmoothScroll>
+        </LangProvider>
       </body>
     </html>
   );

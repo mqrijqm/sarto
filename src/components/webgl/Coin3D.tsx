@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { useInView } from "@/lib/useInView";
 
 /**
  * Srebrni novčić-pečat: cilindar, lice/naličje = Codex slike (ujedno i bump mapa za reljef),
@@ -23,9 +24,9 @@ function Env() {
   return null;
 }
 
-function useFaceTexture(src: string, flip = false) {
+function useFaceTexture(src: string, flip = false, onLoad?: () => void) {
   const tex = useMemo(() => {
-    const t = new THREE.TextureLoader().load(src);
+    const t = new THREE.TextureLoader().load(src, () => onLoad?.());
     t.colorSpace = THREE.SRGBColorSpace;
     t.anisotropy = 8;
     // novčić na slici zauzima ~92% kadra — uvećaj da ivica pogodi ivicu cilindra
@@ -33,14 +34,25 @@ function useFaceTexture(src: string, flip = false) {
     t.repeat.set(0.9, 0.9);
     if (flip) t.rotation = Math.PI;
     return t;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src, flip]);
   return tex;
 }
 
 function Coin({ spin, front, back }: { spin: React.RefObject<number>; front: string; back: string }) {
   const g = useRef<THREE.Group>(null);
-  const fTex = useFaceTexture(front);
-  const bTex = useFaceTexture(back, true);
+  // novčić se prikazuje tek kad su obe strane učitane (inače blesne crn)
+  const loaded = useRef(0);
+  const invalidate = useThree((st) => st.invalidate);
+  const onLoad = () => {
+    loaded.current++;
+    if (g.current && loaded.current >= 2) {
+      g.current.visible = true;
+      invalidate(); // iscrtaj odmah (i u "demand" režimu) => teksture odu na GPU pre skrola
+    }
+  };
+  const fTex = useFaceTexture(front, false, onLoad);
+  const bTex = useFaceTexture(back, true, onLoad);
 
   const mats = useMemo(() => {
     const edge = new THREE.MeshStandardMaterial({ color: "#b9b6b2", metalness: 1, roughness: 0.38 });
@@ -66,7 +78,7 @@ function Coin({ spin, front, back }: { spin: React.RefObject<number>; front: str
   });
 
   return (
-    <group ref={g}>
+    <group ref={g} visible={false}>
       {/* baza cilindra gleda ka +Y — okrećemo je ka kameri */}
       <mesh rotation={[Math.PI / 2, 0, 0]} material={mats}>
         <cylinderGeometry args={[1, 1, 0.13, 96, 1]} />
@@ -86,9 +98,12 @@ export function Coin3D({
   back?: string;
   className?: string;
 }) {
+  const wrap = useRef<HTMLDivElement>(null);
+  const inView = useInView(wrap);
   return (
-    <div className={className}>
-      <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 3.4], fov: 35 }} gl={{ alpha: true, antialias: true }}>
+    <div ref={wrap} className={className}>
+      {/* van ekrana: "demand" = samo prvi kadar (shaderi/teksture se pripreme odmah, ne tokom skrola) */}
+      <Canvas frameloop={inView ? "always" : "demand"} dpr={[1, 1.75]} camera={{ position: [0, 0, 3.4], fov: 35 }} gl={{ alpha: true, antialias: true }}>
         <Env />
         <ambientLight intensity={0.25} />
         <directionalLight position={[-2, 3, 4]} intensity={1.6} />

@@ -117,7 +117,7 @@ export function GalleryGrid() {
           >
             <span className="media block aspect-[153/191] w-full md:w-[10.6vw] md:max-w-[190px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={m(it.name)} alt="" loading="lazy" className="transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-[1.06]" />
+              <img src={m(it.name, "sm")} alt="" loading="lazy" decoding="async" className="transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-[1.06]" />
             </span>
           </button>
         ))}

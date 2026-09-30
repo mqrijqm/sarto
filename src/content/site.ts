@@ -30,5 +30,8 @@ export const CONTACT = {
   commissions: "commissions@sartostudio.com",
 };
 
-/** putanja do optimizovane slike */
-export const m = (name: string) => `/media/${name}.webp`;
+/**
+ * Putanja do optimizovane slike. `size="sm"` = verzija širine 640px za male sličice
+ * (grid, galerija) — browser ne dekodira sliku od 2000px za prikaz od 150px (manje trzanja pri skrolu).
+ */
+export const m = (name: string, size?: "sm") => `/media/${size === "sm" ? "sm/" : ""}${name}.webp`;

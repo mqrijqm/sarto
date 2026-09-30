@@ -7,6 +7,7 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { SUIT_HEIGHT, createMarbleMaterial } from "./SuitModel";
 import { isLowPower } from "@/lib/motion";
+import { useInView } from "@/lib/useInView";
 
 /**
  * Scena za 3D mermerno odelo iz GLB fajla (npr. Meshy / Tripo image-to-3D):
@@ -54,6 +55,7 @@ function useMarble(textureUrl?: string) {
 /** Učitava GLB, normalizuje veličinu/poziciju i stavlja mermer na sve mesheve. */
 function GlbModel({ url, material }: { url: string; material: THREE.Material }) {
   const [obj, setObj] = useState<THREE.Object3D | null>(null);
+  const invalidate = useThree((st) => st.invalidate);
   useEffect(() => {
     let alive = true;
     new GLTFLoader().load(url, (gltf) => {
@@ -69,7 +71,6 @@ function GlbModel({ url, material }: { url: string; material: THREE.Material }) 
         const mesh = o as THREE.Mesh;
         if (!mesh.isMesh) return;
         if (!mesh.geometry.attributes.normal) mesh.geometry.computeVertexNormals();
-        mesh.castShadow = mesh.receiveShadow = true;
       });
       setObj(root);
     });
@@ -83,7 +84,8 @@ function GlbModel({ url, material }: { url: string; material: THREE.Material }) 
       const mesh = o as THREE.Mesh;
       if (mesh.isMesh) mesh.material = material;
     });
-  }, [obj, material]);
+    invalidate(); // pripremi shader/teksture odmah, ne tek kad model uđe u ekran
+  }, [obj, material, invalidate]);
 
   return obj ? <primitive object={obj} /> : null;
 }
@@ -132,10 +134,13 @@ export function SuitStage({
   className?: string;
 }) {
   const low = typeof window !== "undefined" && isLowPower();
+  const wrap = useRef<HTMLDivElement>(null);
+  const inView = useInView(wrap);
   return (
-    <div className={className}>
+    <div ref={wrap} className={className}>
       <Canvas
-        dpr={low ? 1 : [1, 1.75]}
+        frameloop={inView ? "always" : "demand"}
+        dpr={low ? 1 : [1, 1.5]}
         camera={{ fov: 26, near: 0.1, far: 50, position: [0, 2.5, 5.6] }}
         gl={{
           alpha: true,
@@ -144,12 +149,11 @@ export function SuitStage({
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 0.78,
         }}
-        shadows={!low}
         style={{ width: "100%", height: "100%" }}
       >
         <Env />
         <hemisphereLight args={["#ffffff", "#cbbfb4", 0.35]} />
-        <directionalLight position={[-4, 5.5, 3.2]} intensity={2.6} castShadow={!low} shadow-mapSize={[1024, 1024]} shadow-bias={-0.0004} />
+        <directionalLight position={[-4, 5.5, 3.2]} intensity={2.6} />
         <directionalLight position={[4.5, 3, -3.5]} intensity={1.3} color="#fff1e4" />
         <directionalLight position={[2.5, 1, 6]} intensity={0.18} />
         <Rig state={state} url={url} texture={texture} />

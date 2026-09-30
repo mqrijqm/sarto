@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { isLowPower } from "@/lib/motion";
+import { useInView } from "@/lib/useInView";
 
 /**
  * "2.5D rotacija": fotografija skulpture + mapa dubine (belo = bliže).
@@ -213,10 +214,13 @@ export function DepthSculpture({
   imgBg?: string;
   className?: string;
 }) {
+  const wrap = useRef<HTMLDivElement>(null);
+  const inView = useInView(wrap);
   const low = typeof window !== "undefined" && isLowPower();
   return (
-    <div className={className}>
+    <div ref={wrap} className={className}>
       <Canvas
+        frameloop={inView ? "always" : "demand"}
         dpr={low ? 1 : [1, 1.75]}
         gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
         flat
