@@ -1,0 +1,1 @@
+marble-tex.png | 1:1 square | perfectly SEAMLESS tileable texture (edges wrap on all sides) of polished white Statuario / Carrara marble seen flat, orthographic, even lighting, no shadows, no perspective: mostly soft white #efedea with delicate thin grey meandering veins and a few faint larger soft grey clouds, high detail, photographic material scan

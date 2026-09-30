@@ -96,7 +96,9 @@ void main(){
   col = mix(col, uBg, fadeZone * step(0.001, uFade));
   col = mix(uBg, col, inside);
 
-  gl_FragColor = vec4(col, uOpacity);
+  // pozadina providna — vidi se sadržaj iza platna (npr. naslov); boja ostaje ista kao stranica
+  float alpha = (1.0 - isBg) * inside * (1.0 - fadeZone * step(0.001, uFade));
+  gl_FragColor = vec4(col, uOpacity * alpha);
 }
 `;
 
