@@ -1,0 +1,8 @@
+art-sunset.png | 4:5 portrait | 19th century oil painting of a calm sea at sunset, golden orange sky, museum reproduction photo, painting fills the frame
+art-temple.png | 4:5 portrait | 19th century romantic oil painting of a ruined Greek temple on a hill at golden hour, museum reproduction photo, painting fills the frame
+art-hands.png | 4:5 portrait | ancient terracotta relief carving of two clasped hands, close-up, warm light
+art-coin.png | 4:5 portrait | antique bronze Roman coin with an emperor profile resting on aged paper, museum archive photo
+art-portrait.png | 4:5 portrait | 19th century painted portrait of a gentleman in a black frock coat seated in an armchair, museum reproduction photo, painting fills the frame
+up-lapel.png | 4:5 portrait | (B) close-up of the plaster sculpture peak lapel and boutonniere, grey backdrop
+up-trouser.png | 4:5 portrait | (B) close-up of the plaster sculpture trouser legs and crisp crease with sculpted shoes at the base, grey backdrop
+up-full.png | 4:5 portrait | (B) the plaster suit sculpture full length on a small grey plinth, grey backdrop

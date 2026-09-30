@@ -1,0 +1,5 @@
+wide-process.png | out/wide-process.png | groom in charcoal three-piece suit in profile, hand on an ochre plinth with the plaster sculpture, orange backdrop
+grid-small.png | out/grid-small.png | full-length groom in cream suit on a plinth, orange backdrop
+grid-front.png | out/grid-front.png | groom in ivory double-breasted suit on a plinth, facing camera, orange backdrop
+values-1.png | out/values-1.png | groom in white dinner jacket next to the plaster sculpture on a tall plinth, orange backdrop
+values-3.png | out/values-3.png | groom in cream suit with open arms beside the plaster sculpture, orange backdrop

@@ -1,0 +1,8 @@
+situ-piano.png | 4:5 portrait | (C) warm living room corner with a grand piano, framed seascape oil painting, table lamp glowing, the small plaster suit sculpture on the piano
+situ-desk.png | 4:5 portrait | (C) small antique writing desk with a carved wooden wall ornament above, cane chair, stone floor, window light, the small plaster suit sculpture on the desk
+situ-shelves.png | 4:5 portrait | (C) white built-in bookshelves with leather books, a black horse figurine, silver tea set, the small plaster suit sculpture on a shelf
+situ-mantel.png | 4:5 portrait | (C) fluted plaster fireplace mantel with a blossom painting above, four small white plaster suit sculptures lined up on the mantel
+situ-peonies.png | 4:5 portrait | (C) white kitchen counter, a glass vase of deep magenta peonies next to the small plaster suit sculpture, bright daylight
+situ-barcart.png | 4:5 portrait | (C) silver bar cart with crystal decanters and black feathers in a vase, white panelled wall, the small plaster suit sculpture on the cart
+situ-green.png | 5:4 landscape | (C) sunny home office with sage green scalloped bookshelves, fluted oak desk with an open art book and orange ranunculus, garden visible through black framed doors, the small plaster suit sculpture as the base of a table lamp with a linen shade
+situ-abstract.png | 4:5 portrait | (C) large expressive abstract oil painting leaning against a warm grey wall, the small plaster suit sculpture standing on the floor beside it

@@ -1,0 +1,5 @@
+hero-1.png | out/hero-1.png | extreme close-up profile of a groom in black tuxedo and bow tie, warm orange backdrop, blurred plaster suit sculpture on the right
+hero-3.png | out/hero-3.png | groom in cream double-breasted suit looking down at a small plaster suit sculpture, warm orange backdrop
+step-1.png | out/step-1.png | full-length groom in ivory tuxedo standing on an ochre plinth, orange backdrop
+step-3.png | out/step-3.png | groom looking over his shoulder beside the plaster sculpture on a plinth, orange backdrop
+wide-about.png | out/wide-about.png | torso of a groom in cream suit beside the plaster sculpture on a plinth, orange backdrop

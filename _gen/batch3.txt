@@ -1,0 +1,8 @@
+values-3.png | 3:4 portrait | (A) groom in cream suit with arms slightly open standing beside the plaster sculpture on a plinth, confident, warm orange backdrop
+name-big.png | 3:4 portrait | (A) groom captured mid-motion putting on his ivory tuxedo jacket, one arm raised in the sleeve, dramatic side light, warm orange backdrop, dynamic elegant pose
+name-family.png | 3:4 portrait | candid outdoor wedding portrait: groom in black tuxedo with his groomsmen and family in front of an adobe building with trees, sunny, natural documentary wedding photography
+name-flower.png | 3:4 portrait | a single white gardenia boutonniere and green leaves on a pure black background, fine-art botanical photography
+name-emblem.png | 3:4 portrait | (A) plain warm orange painted backdrop, in the center a small cream embossed line-drawn emblem of a tailor figure holding a needle and thread inside a circle, minimal (no letters)
+name-groom.png | 3:4 portrait | (A) groom in cream suit with open arms, full body, elegant, warm orange backdrop
+story-wedding.png | 4:5 portrait | candid wedding photo outdoors on a sunny day: bride and groom walking and smiling holding hands, groomsmen in black tuxedos and bridesmaids in sage green dresses behind them, adobe building and trees, documentary wedding photography
+founder.png | 1:1 square | black and white portrait of a stylish man in his 40s, tailor-founder of an atelier, soft window light, subtle smile

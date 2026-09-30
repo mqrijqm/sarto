@@ -1,0 +1,8 @@
+sticky-plaster.png | 3:4 portrait | (B) close-up of the white plaster suit sculpture: chest, peak lapels, boutonniere and pocket square sculpted in plaster with fine embroidered brocade texture, three-quarter angle, grey backdrop
+grid-back.png | 3:4 portrait | (A) groom from behind in an ivory tuxedo, the small plaster suit sculpture on an ochre plinth at lower right, warm orange backdrop
+grid-drape.png | 3:4 portrait | (B) close-up of the plaster sculpture jacket back and vent, crisp sculpted folds, grey backdrop
+grid-small.png | 3:4 portrait | (A) full-length groom in cream suit standing on a plinth, looking to the side, warm orange backdrop
+grid-front.png | 3:4 portrait | (A) groom in an ivory double-breasted suit, full length, standing on an ochre plinth, facing camera, warm orange gradient backdrop
+grid-bust.png | 3:4 portrait | (B) plaster sculpture of the suit jacket seen from the side, shoulder and sleeve with sculpted fabric texture, grey backdrop
+values-1.png | 3:4 portrait | (A) groom in a white dinner jacket looking at a small plaster suit sculpture on a tall plinth next to him, warm orange backdrop
+values-2.png | 3:4 portrait | (A) the small white plaster suit sculpture seen from the back on an ochre plinth, warm orange backdrop, product still life

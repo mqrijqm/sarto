@@ -1,26 +1,324 @@
 @import "tailwindcss";
 
+/* Design tokens — izvučeni 1:1 sa reference (verostudio.com :root) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --c-ink: #181615;
+  --c-white: #f8f8f8;
+  --c-grey-300: #d9d9d9;
+  --c-grey-600: #979696;
+  --c-beige-100: #f3f0ed;
+  --c-beige-300: #e6d8cc;
+  --c-orange: #e97e00;
+  --page-bg: var(--c-beige-100);
+
+  --ease-custom: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --gutter: 30px;
+  --gap: 10px;
+  --header-top: 30px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--c-ink);
+  --color-paper: var(--c-white);
+  --color-beige: var(--c-beige-100);
+  --color-sand: var(--c-beige-300);
+  --color-mute: var(--c-grey-600);
+  --color-line: var(--c-grey-300);
+  --font-display: var(--font-marcellus), "Georgia", serif;
+  --font-italic: var(--font-cormorant), "Georgia", serif;
+  --font-sans: var(--font-dmsans), "Helvetica Neue", Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--page-bg);
+  transition: background-color 0.8s var(--ease-custom);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
+  color: var(--c-ink);
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--c-ink);
+  color: var(--c-white);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* ---------- Typography ---------- */
+.t-header {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(46px, 8.35vw, 120px);
+  line-height: 1;
+  letter-spacing: -0.005em;
+}
+.t-header-xl {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 12.2vw, 176px);
+  line-height: 0.98;
+}
+.t-display-1 {
+  font-family: var(--font-display);
+  font-size: 2.875rem;
+  line-height: 1.1;
+}
+.t-sans-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(24px, 2.1vw, 30px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+.t-sans-sub {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.t-body {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+.t-small {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+.t-eyebrow {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+}
+.t-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Rich text: _italic_ tokens + diamond period */
+.rt-i {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.1em;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.rt-dot {
+  display: inline-block;
+  width: 0.12em;
+  height: 0.12em;
+  margin-left: 0.07em;
+  background: currentColor;
+  transform: rotate(45deg) translateY(-0.02em);
+  vertical-align: baseline;
+}
+.rt-line {
+  display: block;
+}
+.mask {
+  display: block;
+  overflow: clip;
+  overflow-clip-margin: 0.25em;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+/* ---------- Buttons (text roll) ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  padding: 10px 30px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--c-ink);
+  isolation: isolate;
+  white-space: nowrap;
+  transition: color 0.3s var(--ease-custom);
+}
+.btn::before {
+  /* mekani topli sjaj iza dugmeta, kao na referenci */
+  content: "";
+  position: absolute;
+  inset: -22px -30px;
+  z-index: -2;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(231, 205, 190, 0.55), rgba(231, 205, 190, 0));
+  filter: blur(8px);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-custom);
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--c-white);
+  transition:
+    background-color 0.3s var(--ease-custom),
+    opacity 0.3s var(--ease-custom);
+}
+.btn .rt-i {
+  font-size: 1.08em;
+  font-weight: 500;
+}
+.btn--frost {
+  color: var(--c-white);
+}
+.btn--frost::after {
+  opacity: 0.2;
+}
+.btn--frost::before {
+  opacity: 0;
+}
+.btn--dark {
+  color: var(--c-white);
+}
+.btn--dark::after {
+  background: var(--c-ink);
+}
+.btn--dark::before {
+  opacity: 0.6;
+}
+.btn--block {
+  width: 100%;
+}
+
+.roll {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 0.1em 0;
+}
+.roll__inner {
+  display: block;
+  transition: transform 0.9s var(--ease-out-expo);
+}
+.roll__copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  padding-top: 0.1em;
+}
+@media (hover: hover) {
+  .btn:hover .roll__inner,
+  .roll-host:hover .roll__inner {
+    transform: translateY(-100%);
+  }
+  .btn:hover::after {
+    opacity: 1;
+  }
+  .btn--frost:hover {
+    color: var(--c-ink);
+  }
+}
+
+/* ---------- Links ---------- */
+.u-link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.6s var(--ease-out-expo);
+}
+@media (hover: hover) {
+  .u-link:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+}
+.u-link-in {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.6s var(--ease-out-expo);
+}
+@media (hover: hover) {
+  .u-link-in:hover {
+    background-size: 100% 1px;
+    background-position: 0 100%;
+  }
+}
+
+/* Media */
+.media {
+  position: relative;
+  overflow: hidden;
+  background: #d8cfc7;
+}
+.media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.px-g {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 16px;
+    --header-top: 16px;
+  }
+  body {
+    font-size: 16px;
+  }
+  .btn {
+    height: 40px;
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

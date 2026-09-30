@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generisanje / reference (veliki fajlovi)
+/_gen/out/
+/_gen/thumbs/
+/_gen/seq/
+/_gen/prev/
+/_gen/*.jpg
+/_gen/*.log
+/_ref/
+/.playwright-mcp/
+.dev.log

@@ -1,0 +1,6 @@
+name-big.png | out/name-big.png | groom mid-motion putting on his ivory tuxedo jacket, orange backdrop
+name-groom.png | out/name-groom.png | groom in cream three-piece suit with open arms, orange backdrop
+p-commission.png | out/p-commission.png | black and white photo of a tailor at a laptop in an atelier (his mask is white marble, image stays black and white)
+founder.png | out/founder.png | black and white portrait of the atelier founder (his mask is white marble, image stays black and white)
+name-family.png | out/name-family.png | groom in black tuxedo with groomsmen outdoors — EVERY man wears his own marble fragment mask
+story-wedding.png | out/story-wedding.png | bride and groom walking, groomsmen behind — every MAN wears a marble fragment mask, the bride stays unchanged

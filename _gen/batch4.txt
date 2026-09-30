@@ -1,0 +1,8 @@
+p-commission.png | 3:4 portrait | black and white photo of a tailor-consultant man working at a laptop at a white desk in a bright atelier, coffee cup, rolls of fabric in background, documentary
+p-capture.png | 3:4 portrait | black and white photo of a men's wedding suit on a dress form inside a 3D photogrammetry scanning rig with many cameras on aluminium poles, dark studio
+p-create.png | 3:4 portrait | black background, a men's suit shown split vertically: left half white photographic suit with fabric texture, right half the same suit as glowing white digital point cloud / wireframe mesh with tiny technical dots
+p-deliver.png | 3:4 portrait | (B) grey matte gift box wrapped with a white ribbon printed with the word "SARTO" repeated in an elegant serif font, grey backdrop, monochrome, product photo (the word SARTO on the ribbon IS allowed)
+situ-lamp.png | 4:5 portrait | (C) antique mahogany chest with a chinoiserie ginger-jar lamp and pleated shade, gilt mirror, the small white plaster suit sculpture standing beside the lamp
+situ-wallpaper.png | 4:5 portrait | (C) powder room with bold floral magnolia wallpaper, brass sconce, marble washstand, the small plaster suit sculpture on a shelf
+situ-painting.png | 4:5 portrait | (C) white brick wall with a large gilt-framed oil painting of fishermen, white sculptural armchair, burl wood side table holding the small plaster suit sculpture
+situ-console.png | 4:5 portrait | (C) fluted oak console under a large dark navy abstract painting, the small plaster suit sculpture on the console, soft daylight
