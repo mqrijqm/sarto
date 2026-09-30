@@ -1,0 +1,6 @@
+wide-process.png | 21:9 ultra wide landscape | (A) charcoal three-piece suit on a headless dress form beside a tall ochre plinth holding the small white plaster suit sculpture, warm orange backdrop
+grid-back.png | 3:4 portrait | (A) back view of an ivory tuxedo jacket on a headless dress form, center vent and shoulder seams, the small plaster suit sculpture on an ochre plinth lower right, warm orange backdrop
+grid-small.png | 3:4 portrait | (A) cream suit on a full-length headless dress form standing on an ochre plinth, warm orange backdrop
+grid-front.png | 3:4 portrait | (A) tight close-up of an ivory double-breasted jacket: six horn buttons, peak lapel edge and pocket flap, fabric texture, warm orange light
+values-1.png | 3:4 portrait | (A) white dinner jacket on a headless dress form, cropped close at the chest, beside a tall ochre plinth with the small plaster suit sculpture, warm orange backdrop
+values-3.png | 3:4 portrait | (A) macro of a cream three-piece suit waistcoat: buttons, watch chain and pocket, on a dress form, warm orange light

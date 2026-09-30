@@ -11,10 +11,11 @@ import { prefersReducedMotion } from "@/lib/motion";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const GRID_ITEMS = [
-  "situ-lamp", "situ-wallpaper", "situ-painting", "situ-console", "situ-piano",
-  "situ-desk", "up-lapel", "art-sunset", "art-hands", "situ-shelves",
-  "situ-abstract", "grid-drape", "situ-green", "situ-mantel", "up-full",
-  "up-trouser", "situ-peonies", "situ-barcart", "art-portrait", "art-temple",
+  "art-gent-1", "situ-lamp", "art-still-1", "situ-wallpaper", "art-gent-3",
+  "situ-painting", "art-gent-2", "up-lapel", "art-portrait", "situ-console",
+  "art-gent-4", "situ-piano", "art-still-2", "grid-drape", "art-gent-5",
+  "situ-desk", "art-sunset", "situ-green", "art-gent-6", "situ-mantel",
+  "art-temple", "up-full", "art-hands", "situ-shelves", "art-coin",
 ];
 
 /**

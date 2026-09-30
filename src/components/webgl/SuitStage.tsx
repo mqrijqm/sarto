@@ -102,19 +102,19 @@ function Rig({ state, url, texture }: { state: React.RefObject<StageState>; url:
     spin.current += d * 0.22; // idle turntable
     const p = s.progress;
     // model ulazi odozdo (samo vrat/ramena vire) i penje se dok se ne vidi porub
-    const targetY = THREE.MathUtils.lerp(-SUIT_HEIGHT * 0.5, SUIT_HEIGHT * 0.4, p);
+    const targetY = THREE.MathUtils.lerp(-SUIT_HEIGHT * 0.32, SUIT_HEIGHT * 0.42, p);
     g.position.y += (targetY - g.position.y) * Math.min(1, d * 5);
     const rotTarget = spin.current + p * Math.PI * 1.1 + s.pointerX * 0.25;
     g.rotation.y += (rotTarget - g.rotation.y) * Math.min(1, d * 4);
     g.rotation.x += (s.pointerY * 0.04 - g.rotation.x) * Math.min(1, d * 3);
     const cam = camera as THREE.PerspectiveCamera;
-    const dist = size.width < 768 ? 7.4 : 5.6;
+    const dist = size.width < 768 ? 6.2 : 4.5;
     cam.position.set(0, SUIT_HEIGHT * 0.78, dist);
     cam.lookAt(0, SUIT_HEIGHT * 0.78, 0);
   });
 
   return (
-    <group ref={group} position={[0, -SUIT_HEIGHT * 0.5, 0]}>
+    <group ref={group} position={[0, -SUIT_HEIGHT * 0.32, 0]}>
       <GlbModel url={url} material={material} />
     </group>
   );

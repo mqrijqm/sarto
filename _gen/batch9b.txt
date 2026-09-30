@@ -1,0 +1,6 @@
+art-still-2.png | 4:5 portrait | 19th century oil painting of a classical white marble bust of a young man in a dim museum gallery with golden light, painting fills the frame
+f-collar.png | 16:9 landscape | (A) extreme close-up from just below the chin down: crisp white wing-collar shirt, black silk bow tie and satin lapel of a tuxedo, warm orange backdrop, shallow depth of field, blurred white plaster suit sculpture shoulder in the right third of the frame; NO face visible at all, frame starts at the jaw line
+f-hands.png | 1:1 square | black and white photo: a tailor's hands marking chalk lines on dark wool fabric with a tape measure around his neck visible only from the collar down, workshop, NO face
+f-grooms.png | 3:4 portrait | candid outdoor wedding photo framed from the shoulders down: a row of groomsmen in black tuxedos with white boutonnieres, hands in pockets, sunny garden, NO faces visible
+f-couple.png | 4:5 portrait | candid wedding photo framed from the shoulders down: bride in lace gown and groom in black tuxedo walking holding hands, bouquet of white peonies, sunny path, NO faces visible
+f-atelier.png | 3:4 portrait | black and white photo of a tailor's workbench: hands cutting fabric with large shears next to a laptop and paper patterns, seen from above, NO face
